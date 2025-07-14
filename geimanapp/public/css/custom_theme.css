@@ -1,0 +1,13 @@
+CSS
+[data-theme="my_modern_theme"] {
+  --primary-color: #4A90E2;
+  --text-color: #333333;
+  --background-color: #F4F7F9;
+  --card-bg: #FFFFFF;
+  --border-color: #D1D8DD;
+
+  /* Override specific Frappe CSS variables */
+  --blue-500: var(--primary-color);
+  --gray-800: var(--text-color);
+  --body-bg: var(--background-color);
+}
