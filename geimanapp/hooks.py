@@ -1,17 +1,17 @@
-app_name = "geimanapp"
-app_title = "Geiman Burkhardt App"
-app_publisher = "BJB"
-app_description = "Main app for Geiman Burkhardt Electric"
-app_email = "brennebn@gmail.com"
-app_license = "mit"
+#app_name = "geimanapp"
+#app_title = "Geiman Burkhardt App"
+#app_publisher = "BJB"
+#app_description = "Main app for Geiman Burkhardt Electric"
+#app_email = "brennebn@gmail.com"
+#app_license = "mit"
 
-app_include_css = "assets/geimanapp/css/clarity_custom_theme.css"
-app_include_js = "assets/geimanapp/js/global_script.js"
-app_include_js = "assets/geimanapp/js/theme_switcher_override.js"
+#app_include_css = "assets/geimanapp/css/clarity_custom_theme.css"
+#app_include_js = "assets/geimanapp/js/global_script.js"
+#app_include_js = "assets/geimanapp/js/theme_switcher_override.js"
 
-override_whitelisted_methods = {
-    "frappe.core.doctype.user.user.switch_theme": "geimanapp.overrides.switch_theme"
-}
+#override_whitelisted_methods = {
+#    "frappe.core.doctype.user.user.switch_theme": "geimanapp.overrides.switch_theme"
+#}
 
 # Apps
 # ------------------
