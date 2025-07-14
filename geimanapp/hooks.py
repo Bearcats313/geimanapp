@@ -5,7 +5,7 @@ app_description = "Main app for Geiman Burkhardt Electric"
 app_email = "brennebn@gmail.com"
 app_license = "mit"
 
-app_include_css = "/assets/geimanapp/geimanapp/css/custom_styles.css"
+app_include_css = "/assets/geimanapp/geimanapp/css/clarity_custom_theme.css"
 app_include_js = "/assets/geimanapp/geimanapp/js/global_script.js"
 
 
