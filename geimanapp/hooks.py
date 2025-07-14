@@ -5,9 +5,9 @@ app_description = "Main app for Geiman Burkhardt Electric"
 app_email = "brennebn@gmail.com"
 app_license = "mit"
 
-app_include_css = "css/clarity_custom_theme.css"
-app_include_js = "js/global_script.js"
-app_include_js = "js/theme_switcher_override.js"
+app_include_css = "geimanapp/css/clarity_custom_theme.css"
+app_include_js = "geimanapp/js/global_script.js"
+app_include_js = "geimanapp/js/theme_switcher_override.js"
 
 override_whitelisted_methods = {
     "frappe.core.doctype.user.user.switch_theme": "geimanapp.overrides.switch_theme"
