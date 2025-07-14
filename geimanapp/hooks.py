@@ -5,6 +5,10 @@ app_description = "Main app for Geiman Burkhardt Electric"
 app_email = "brennebn@gmail.com"
 app_license = "mit"
 
+app_include_css = "/assets/geimanapp/geimanapp/css/custom_styles.css"
+app_include_js = "/assets/geimanapp/geimanapp/js/global_script.js"
+
+
 # Apps
 # ------------------
 
@@ -241,11 +245,6 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
-app_include_css = "/assets/geimanapp/geimanapp/css/custom_styles.css"
-app_include_js = "/assets/geimanapp/geimanapp/js/global_script.js"
-
-doctype_js = {
         "Employee": "public/js/employee_customizations.js"
         }
 
