@@ -9,6 +9,10 @@ app_include_css = "/assets/geimanapp/geimanapp/css/clarity_custom_theme.css"
 app_include_js = "/assets/geimanapp/geimanapp/public/js/global_script.js"
 app_include_js = "/assets/geimanapp/geimanapp/public/js/theme_switcher_override.js"
 
+override_whitelisted_methods = {
+    "frappe.core.doctype.user.user.switch_theme": "geimanapp.overrides.switch_theme"
+}
+
 # Apps
 # ------------------
 
