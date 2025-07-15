@@ -1,7 +1,7 @@
 /* In [custom_app]/public/css/clarity_focus_theme.css */
 
 /* Define the new theme and its core variables */
-[data-theme="clarity-focus"] {
+[data-theme="Clarity-Focus"] {
   --primary-color: #0D6EFD;
   --text-color: #212529;
   --text-muted: #6C757D;
@@ -12,7 +12,7 @@
 }
 
 /* Apply the new theme variables to Frappe's core variables */
-[data-theme="clarity-focus"] {
+[data-theme="Clarity-Focus"] {
   /* Colors */
   --primary: var(--primary-color);
   --blue-500: var(--primary-color);
