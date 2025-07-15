@@ -8,7 +8,7 @@ def switch_theme(theme):
     """
     # This list contains all standard themes plus your custom one.
     # Replace 'my_awesome_theme' with the actual name from your CSS file.
-    allowed_themes = ['Light', 'Dark', 'Automatic', 'clarity_custom_theme']
+    allowed_themes = ['Light', 'Dark', 'Automatic', 'Clarity-Focus']
 
     if theme in allowed_themes:
         # 'desk_theme' is the correct field name for modern Frappe versions.
