@@ -7,8 +7,8 @@ import "./socket";
 import {
 	FrappeUI,
 	frappeRequest,
-	frappeEmitter,
-	setFrappeRouter,
+	//frappeEmitter,
+	//setFrappeRouter,
 } from "frappe-ui";
 import "./main.css";
 
@@ -19,9 +19,9 @@ app.use(FrappeUI);
 
 app.provide("$frappe", {
 	request: frappeRequest,
-	emitter: frappeEmitter,
+	//emitter: frappeEmitter,
 });
 
-setFrappeRouter(router);
+//setFrappeRouter(router);
 
 app.mount("#app");
