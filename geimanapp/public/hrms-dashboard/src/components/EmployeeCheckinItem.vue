@@ -1,29 +1,103 @@
-<template>
-	<ListItem>
-		<template #left>
-			<FeatherIcon name="clock" class="h-5 w-5 text-gray-500" />
-			<div class="flex flex-col items-start gap-1.5">
-				<div class="text-base font-normal text-gray-800">Log Type: {{ props.doc.log_type }}</div>
-				<div class="text-xs font-normal text-gray-500">
-					<span>{{ formatTimestamp(props.doc.time) }}</span>
-				</div>
-			</div>
-		</template>
-		<template #right>
-			<FeatherIcon name="chevron-right" class="h-5 w-5 text-gray-500" />
-		</template>
-	</ListItem>
-</template>
-
 <script setup>
-import { FeatherIcon } from "frappe-ui"
+import { ref, onMounted } from "vue";
+import { frappe } from "frappe-ui";
+import { Button } from "frappe-ui";
 
-import ListItem from "@/components/ListItem.vue"
-import { formatTimestamp } from "@/utils/formatters"
+const props = defineProps(["employee"]);
+const emit = defineEmits(["checkin"]);
 
-const props = defineProps({
-	doc: {
-		type: Object,
-	},
-})
+const loading = ref(false);
+
+function checkin(log_type) {
+  loading.value = true;
+  frappe.call({
+    method: "hrms.hr.utils.check_in",
+    args: {
+      employee: props.employee.name,
+      log_type: log_type,
+      // --- MODIFICATION: Pass the selected project to the check-in function ---
+      project: selectedProject.value
+    },
+    callback: (r) => {
+      loading.value = false;
+      if (!r.exc) {
+        emit("checkin");
+      }
+    },
+  });
+}
+
+// --- START OF NEW CODE ---
+const projects = ref([]);
+const selectedProject = ref(null);
+
+// Fetch the list of projects when the component is first mounted
+onMounted(() => {
+  frappe.call({
+    method: "frappe.client.get_list",
+    args: {
+      doctype: "Project",
+      fields: ["name"],
+      filters: {
+        status: "Open"
+      },
+      limit: 100 // Fetch up to 100 open projects
+    },
+    callback: (r) => {
+      if (r.message) {
+        projects.value = r.message;
+      }
+    }
+  });
+});
+// --- END OF NEW CODE ---
 </script>
+
+<template>
+	<div class="flex items-center justify-between p-4">
+		<div class="flex items-center">
+			<img :src="employee.image" class="w-12 h-12 mr-4 rounded-full" />
+			<div>
+				<p class="text-lg font-semibold text-gray-800">
+					{{ employee.employee_name }}
+				</p>
+				<p class="text-sm text-gray-500">
+					{{ employee.designation }}
+				</p>
+			</div>
+		</div>
+		<div class="flex flex-col items-end w-48">
+
+			<!-- --- START OF NEW HTML --- -->
+			<div class="w-full mb-3">
+				<label for="project-select-{{ employee.name }}" class="sr-only">Project</label>
+				<select :id="'project-select-' + employee.name" v-model="selectedProject" class="block w-full py-2 pl-3 pr-10 text-base border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+					<option :value="null">Select Project (Optional)</option>
+					<option v-for="project in projects" :key="project.name" :value="project.name">
+						{{ project.name }}
+					</option>
+				</select>
+			</div>
+			<!-- --- END OF NEW HTML --- -->
+
+			<div class="flex space-x-2">
+				<Button
+					variant="solid"
+					theme="gray"
+					:loading="loading"
+					@click="checkin('IN')"
+				>
+					Check In
+				</Button>
+				<Button
+					variant="solid"
+					theme="gray"
+					:loading="loading"
+					@click="checkin('OUT')"
+				>
+					Check Out
+				</Button>
+			</div>
+		</div>
+	</div>
+</template>
