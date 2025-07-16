@@ -1,15 +1,17 @@
 import { io } from "socket.io-client";
-import { frappe } from "frappe-ui";
 
 // The problematic import is removed.
-// This simplified call tells socket.io to connect to the same server
-// that served the page, which is correct for a Frappe environment.
+// The frappe object is expected to be available globally (window.frappe)
+// when this app is running inside the Frappe Desk.
 const socket = io({
 	withCredentials: true,
 });
 
 socket.on("connect", () => {
-	frappe.socket = socket;
+    // Attach the socket to the global frappe object if it exists.
+	if (window.frappe) {
+	    window.frappe.socket = socket;
+    }
 });
 
 export default socket;
