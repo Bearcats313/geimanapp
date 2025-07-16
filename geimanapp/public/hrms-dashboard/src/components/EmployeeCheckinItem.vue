@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { frappe } from "frappe-ui";
+// The problematic 'import { frappe }' is removed.
 import { Button } from "frappe-ui";
 
 const props = defineProps(["employee"]);
@@ -10,12 +10,12 @@ const loading = ref(false);
 
 function checkin(log_type) {
   loading.value = true;
-  frappe.call({
+  // MODIFICATION: Use window.frappe for API calls
+  window.frappe.call({
     method: "hrms.hr.utils.check_in",
     args: {
       employee: props.employee.name,
       log_type: log_type,
-      // --- MODIFICATION: Pass the selected project to the check-in function ---
       project: selectedProject.value
     },
     callback: (r) => {
@@ -27,13 +27,12 @@ function checkin(log_type) {
   });
 }
 
-// --- START OF NEW CODE ---
 const projects = ref([]);
 const selectedProject = ref(null);
 
-// Fetch the list of projects when the component is first mounted
 onMounted(() => {
-  frappe.call({
+  // MODIFICATION: Use window.frappe for API calls
+  window.frappe.call({
     method: "frappe.client.get_list",
     args: {
       doctype: "Project",
@@ -50,7 +49,6 @@ onMounted(() => {
     }
   });
 });
-// --- END OF NEW CODE ---
 </script>
 
 <template>
@@ -67,10 +65,8 @@ onMounted(() => {
 			</div>
 		</div>
 		<div class="flex flex-col items-end w-48">
-
-			<!-- --- START OF NEW HTML --- -->
 			<div class="w-full mb-3">
-				<label for="project-select-{{ employee.name }}" class="sr-only">Project</label>
+				<label :for="'project-select-' + employee.name" class="sr-only">Project</label>
 				<select :id="'project-select-' + employee.name" v-model="selectedProject" class="block w-full py-2 pl-3 pr-10 text-base border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
 					<option :value="null">Select Project (Optional)</option>
 					<option v-for="project in projects" :key="project.name" :value="project.name">
@@ -78,8 +74,6 @@ onMounted(() => {
 					</option>
 				</select>
 			</div>
-			<!-- --- END OF NEW HTML --- -->
-
 			<div class="flex space-x-2">
 				<Button
 					variant="solid"
