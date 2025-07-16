@@ -1,5 +1,22 @@
 @import "frappe-ui/src/style.css";
 
+/* Add this to the top of src/assets/main.css */
+
+:root {
+  --primary-color: #0D6EFD;
+  --text-color: #212529;
+  --text-color-muted: #6C757D;
+  --bg-color: #F8F9FA;
+  --card-bg: #FFFFFF;
+  --border-color: #DEE2E6;
+}
+
+/* Example of using the variables */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
 ion-modal {
 	--height: auto;
 }
