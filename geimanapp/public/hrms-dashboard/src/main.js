@@ -10,7 +10,7 @@ import {
 	frappeEmitter,
 	setFrappeRouter,
 } from "frappe-ui";
-import "./assets/main.css";
+import "./main.css";
 
 const app = createApp(App);
 
