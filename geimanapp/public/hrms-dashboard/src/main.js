@@ -10,6 +10,7 @@ import {
 	//frappeEmitter,
 	//setFrappeRouter,
 } from "frappe-ui";
+// MODIFICATION: Use the '@' alias for a more robust path.
 import "./main.css";
 
 const app = createApp(App);

@@ -1,0 +1,2 @@
+import{f as a,j as r,t as o,I as l}from"./frappe-ui-02049d65.js";const d={__name:"EmptyState",props:{message:{type:String},isTableField:{type:Boolean,default:!1}},setup(t){const e=t;return(s,n)=>(a(),r("div",{class:l(["flex flex-col items-center rounded p-5 text-sm text-gray-600",[e.isTableField?"border-2 border-dashed border-gray-300 mt-5":""]])},o(s.__(e.message)),3))}};export{d as default};
+//# sourceMappingURL=EmptyState-3bef2d7a.js.map
